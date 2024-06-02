@@ -1,46 +1,24 @@
-.DS_Store
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
 node_modules
-*.local
 dist
-build
-@redeye/darwin-x64
-packages/graph/testData
-applications/server/dev-databases
-applications/server/campaign
-.eslintcache
+dist-ssr
+*.local
 
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
-/.pnp
-.pnp.js
-
-coverage
-junit.xml
-
-.history
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
 .idea
-.vim
-.nova
-
-[diff]
-    tool = vscode
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
-
-test.sqlite*
-
-junit.*.xml
-release
-tmp
-# moon
-.moon/cache
-.moon/docker
-*.tsbuildinfo
-
-# generated types
-.astro/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

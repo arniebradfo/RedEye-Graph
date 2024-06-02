@@ -1,4 +1,3 @@
-import * as saveSvgAsPng from 'save-svg-as-png';
 import { HierarchicalGraphData } from './GraphData/HierarchicalGraphData';
 import { clampXyToRadius, classNames } from './GraphRenderers/layout-utils';
 import type {
@@ -225,22 +224,6 @@ export class GraphHandler {
 	zoomOut() {
 		// https://observablehq.com/@d3/programmatic-zoom
 		this.svg.transition().call(this.zoom.scaleBy, 0.7, [0, 0]);
-	}
-
-	exportSVG(backgroundColor?: string) {
-		const viewBox = this.svg.node()?.getAttribute('viewBox')?.split(/\s+|,/);
-		saveSvgAsPng.saveSvgAsPng(
-			this.svg.node(), // SVG DOM Element object to be exported. Alternatively, a string of the serialized SVG can be passed
-			'graph.png', // file name of exported image
-			{
-				top: `${viewBox?.[1]}`,
-				left: `${viewBox?.[0]}`,
-				width: `${viewBox?.[2]}`,
-				height: `${viewBox?.[3]}`,
-				encoderOptions: 1,
-				backgroundColor,
-			}
-		);
 	}
 
 	dragState: {

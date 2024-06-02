@@ -1,25 +1,23 @@
 {
-	"extends": "../../tsconfig.json",
-	"compilerOptions": {
-		"module": "ESNext",
-		"lib": ["ESNext", "DOM"],
-		"outDir": "./dist",
-		"rootDir": "./src",
-		"moduleResolution": "Node",
-		"target": "ESNext",
-		"useDefineForClassFields": true,
-		"strict": true,
-		"composite": true,
-		"sourceMap": true,
-		"declaration": true,
-		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"noEmit": false,
-		"skipLibCheck": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitReturns": true
-	},
-	"files": [],
-	"include": ["src"]
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src", "types.d.ts"]
 }
