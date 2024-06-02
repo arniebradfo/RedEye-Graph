@@ -1,3 +1,6 @@
+# Data you don't want to commit publicly
+private-test-data
+
 # Logs
 logs
 *.log

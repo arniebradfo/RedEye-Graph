@@ -12,7 +12,7 @@ declare global {
 
 const getGraphData = async () => {
 	try {
-		return (await json('./testData/small.json')) as SerializableHierarchicalGraphData;
+		return (await json('./public-test-data/miserables.json')) as SerializableHierarchicalGraphData;
 	} catch {
 		return getServers(75, 5);
 	}
@@ -20,7 +20,7 @@ const getGraphData = async () => {
 
 const getPreviouslyParsedGraphData = async () => {
 	try {
-		return (await json('./testData/parsedGraphData.json')) as SerializableHierarchicalGraphData;
+		return (await json('./private-test-data/parsedGraphData.json')) as SerializableHierarchicalGraphData;
 	} catch {
 		return undefined;
 	}
