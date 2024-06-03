@@ -16,6 +16,9 @@
 		cursor: grabbing;
 	}
 
+	&:not(.isZooming) .superNode {
+		transition: r 0.2s cubic-bezier(0, 1, 0, 1);
+	}
 }
 
 .dotGrid {
@@ -31,9 +34,7 @@
 /* .groupNode { pointer-events: none; }  */
 /* // set in GroupGraphRenderer */
 
-&:not(.isZooming) .superNode {
-	transition: r 0.2s cubic-bezier(0, 1, 0, 1);
-}
+
 
 /* HIDE LABELS */
 .occludedLabel,
