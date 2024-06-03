@@ -1,5 +1,5 @@
 import { HierarchicalGraphData } from './GraphData/HierarchicalGraphData';
-import { clampXyToRadius, classNames, dotGrid } from './GraphRenderers/layout-utils';
+import { clampXyToRadius, classNames } from './GraphRenderers/layout-utils';
 import type {
 	GraphData,
 	RootSVG,
