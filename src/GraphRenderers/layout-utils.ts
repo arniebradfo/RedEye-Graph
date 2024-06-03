@@ -1,4 +1,4 @@
-import type { BaseType, Force, SimulationLinkDatum, SimulationNodeDatum, ValueFn, ZoomTransform } from 'd3';
+import type { BaseType, Force, SimulationLinkDatum, SimulationNodeDatum, ValueFn } from 'd3';
 import { HierarchicalGraphNodeDatum } from '../GraphData/GraphNodesAndLinks';
 import type {
 	HierarchicalGraphLink,
@@ -70,24 +70,6 @@ function constant(x: any) {
 	return function (..._: any[]) {
 		return x;
 	};
-}
-
-export function dotGrid(element: HTMLElement | SVGElement = document.documentElement, dotDistance = 40) {
-	function draw(transform: ZoomTransform) {
-		// https://stackoverflow.com/a/466256/5648839
-		const roundDownToPower = Math.pow(2, Math.floor(Math.log2(transform.k)));
-		const dotSpacing = (transform.k / roundDownToPower) * dotDistance;
-		const dotOffsetX = transform.x % dotSpacing;
-		const dotOffsetY = transform.y % dotSpacing;
-		const dotSubOpacity = (dotSpacing - dotDistance) / dotDistance;
-
-		element.style.setProperty('--dot-spacing', dotSpacing + 'px');
-		element.style.setProperty('--dot-offset-x', dotOffsetX + 'px');
-		element.style.setProperty('--dot-offset-y', dotOffsetY + 'px');
-		element.style.setProperty('--dot-sub-opacity-multiplier', dotSubOpacity + '');
-	}
-
-	return draw;
 }
 
 export function positionParentLinkNodes(parentNode: HierarchicalGraphNode) {

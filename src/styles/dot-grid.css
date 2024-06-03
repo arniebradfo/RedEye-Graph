@@ -9,7 +9,9 @@
 	--dot-sub-opacity: calc(var(--dot-opacity) * var(--dot-sub-opacity-multiplier));
 	--dot-gradient: hsla(var(--dot-color-hsl), var(--dot-opacity)) 1px, transparent 0;
 	--dot-sub-gradient: hsla(var(--dot-color-hsl), var(--dot-sub-opacity)) 1px, transparent 0;
-	background-image: radial-gradient(var(--dot-gradient)), radial-gradient(circle at left, var(--dot-sub-gradient)),
+	background-image: 
+		radial-gradient(var(--dot-gradient)), 
+		radial-gradient(circle at left, var(--dot-sub-gradient)),
 		radial-gradient(circle at top left, var(--dot-sub-gradient)),
 		radial-gradient(circle at top, var(--dot-sub-gradient)),
 		radial-gradient(circle at top right, var(--dot-sub-gradient)),
