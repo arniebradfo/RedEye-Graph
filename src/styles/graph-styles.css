@@ -1,0 +1,217 @@
+.graphRoot {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+
+	stroke-linecap: round;
+	stroke-linejoin: round;
+
+	cursor: grab;
+
+	&:active {
+		cursor: grabbing;
+	}
+
+}
+
+.dotGrid {
+	--dot-color-hsl: var(--gray3-hsl);
+}
+
+.superNode,
+.subNode {
+	cursor: pointer;
+	/* &:active { cursor: grabbing; } */
+}
+
+/* .groupNode { pointer-events: none; }  */
+/* // set in GroupGraphRenderer */
+
+&:not(.isZooming) .superNode {
+	transition: r 0.2s cubic-bezier(0, 1, 0, 1);
+}
+
+/* HIDE LABELS */
+.occludedLabel,
+.hiddenLabel {
+	display: none;
+}
+
+.subNodeNameLabel {
+	&:not(.selectedFocus):not(.previewedFocus) {
+		display: none;
+	}
+}
+
+.parentLinkNode {
+	display: none;
+}
+
+text {
+	font-size: var(--pt-font-size-small);
+	/* Need font and color for SVG Export -> */
+	fill: var(--TextBody);
+	font-family: var(--pt-font-family-sans);
+	/* <- Need font and color for SVG Export */
+	stroke: var(--TextOutlineColor);
+	paint-order: stroke;
+	stroke-width: 3px;
+
+	&.selectedFocus {
+		font-weight: var(--font-weight-bold);
+		fill: var(--PreviewFgColor);
+	}
+}
+
+.groupGraph {
+	.subNode {
+		fill: var(--SelectedFgColor);
+	}
+
+	line {
+		stroke: var(--SelectedFgColor);
+	}
+}
+
+line {
+	stroke: var(--PresentFgColor);
+	stroke-width: 2px;
+
+	&.past {
+		stroke: var(--PastFgColor);
+		stroke-dasharray: var(--PastDasharray);
+	}
+
+	&.future {
+		stroke: var(--FutureFgColor);
+		stroke-dasharray: var(--FutureDasharray);
+	}
+
+	&.selected {
+		stroke: var(--PreviewFgColor);
+		/* // not GraphTokens.SelectedFgColor */
+		stroke-width: var(--SelectedThickness);
+	}
+
+	&.previewed {
+		stroke: var(--PreviewFgColor);
+	}
+}
+
+circle {
+	/* stroke-width: 1px; */
+}
+
+.groupNode {
+	fill: none;
+	stroke: var(--GroupNodeStrokeColor);
+}
+
+.computerNode {
+	fill: var(--PresentBgColor);
+	stroke: var(--PresentFgColor);
+
+	&.past {
+		fill: var(--PastBgColor);
+		stroke: var(--PastFgColor);
+	}
+
+	&.future {
+		fill: var(--FutureBgColor);
+		stroke: var(--FutureFgColor);
+	}
+
+	&.selectedParent {
+		stroke: var(--PreviewFgColor);
+	}
+
+	&.previewed {
+		stroke-width: var(--PreviewThickness);
+	}
+
+	&.selected {
+		stroke: var(--PreviewFgColor);
+		stroke-width: var(--SelectedThickness);
+	}
+
+	&.previewed {
+		stroke: var(--PreviewFgColor);
+	}
+
+	&.selectedFocus {
+		fill: var(--SelectedFocusBgColor);
+		stroke: var(--PreviewFgColor);
+		/* // not GraphTokens.SelectedFgColor */
+	}
+}
+
+.superNodeCountLabel {
+	&.past {
+		fill: var(--pt-text-color-muted);
+	}
+
+	&.future {
+		fill: var(--pt-text-color-disabled);
+	}
+}
+
+.serverNode {
+	fill: var(--PresentFgColor);
+	stroke: var(--PresentBgColor);
+}
+
+.softwareNode,
+.serverNode {
+	fill: var(--PresentFgColor);
+	stroke: var(--PresentBgColor);
+
+	&.past {
+		fill: var(--PastFgColor);
+	}
+
+	&.future {
+		fill: var(--FutureFgColor);
+	}
+
+	&.selected {
+		fill: var(--PreviewFgColor);
+		/* // not GraphTokens.SelectedFgColor */
+	}
+
+	&.previewed {
+		fill: var(--PreviewFgColor);
+	}
+
+	&.selectedFocus {
+		fill: var(--SelectedFocusFgColor);
+		stroke: var(--PreviewFgColor);
+		stroke-width: var(--PreviewThickness);
+		filter: drop-shadow(0 0 1px var(--black));
+	}
+}
+
+.showMoreLabels {
+	& .hiddenLabel {
+		display: initial;
+		/* // show more labels */
+	}
+
+	& .superNodeCountLabel.hiddenLabel {
+		display: none;
+		/* // but still hide the counts */
+	}
+
+	& .superGraph {
+
+		&.selectedParent,
+		&.previewedParent {
+			& .hiddenLabel {
+				fill: var(--pt-text-color-muted)
+			}
+		}
+	}
+}

@@ -1,41 +1,5 @@
-html,
-body,
-#root {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
-	font-family: sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	overflow: hidden;
-}
-
 html {
 	background-color: hsl(0, 0%, 92%);
-}
-
-.dotGrid {
-	/* drawDotGrid() properties */
-	--dot-spacing: 0;
-	--dot-offset-x: 0;
-	--dot-offset-y: 0;
-	--dot-opacity: 0.3;
-	--dot-sub-opacity-multiplier: 0;
-	--dot-sub-opacity: calc(var(--dot-opacity) * var(--dot-sub-opacity-multiplier));
-	--dot-gradient: hsla(0, 0%, 0%, var(--dot-opacity)) 1px, transparent 0;
-	--dot-sub-gradient: hsla(0, 0%, 0%, var(--dot-sub-opacity)) 1px, transparent 0;
-	background-image: radial-gradient(var(--dot-gradient)), radial-gradient(circle at left, var(--dot-sub-gradient)),
-		radial-gradient(circle at top left, var(--dot-sub-gradient)),
-		radial-gradient(circle at top, var(--dot-sub-gradient)),
-		radial-gradient(circle at top right, var(--dot-sub-gradient)),
-		radial-gradient(circle at right, var(--dot-sub-gradient)),
-		radial-gradient(circle at bottom right, var(--dot-sub-gradient)),
-		radial-gradient(circle at bottom, var(--dot-sub-gradient)),
-		radial-gradient(circle at bottom left, var(--dot-sub-gradient));
-	background-size: var(--dot-spacing) var(--dot-spacing);
-	background-position-x: calc(50% + var(--dot-offset-x));
-	background-position-y: calc(50% + var(--dot-offset-y));
 }
 
 line {
@@ -52,10 +16,12 @@ text {
 	stroke-linecap: round;
 	stroke-linejoin: round;
 }
+
 .occludedLabel,
 .subNodeNameLabel:not(.selectedFocus):not(.previewedFocus) {
 	opacity: 0.1;
 }
+
 .hiddenLabel {
 	display: none;
 }
@@ -131,11 +97,13 @@ text {
 	fill: black;
 	stroke: white;
 }
+
 .computerNode.previewed {
 	fill: white;
 	stroke: black;
 	stroke-width: 2;
 }
+
 line.previewed {
 	stroke: black;
 	stroke-width: 2.5px;
@@ -148,11 +116,13 @@ line.previewed {
 	fill: blue;
 	stroke: white;
 }
+
 .computerNode.selected {
 	fill: rgb(200, 200, 255);
 	stroke: blue;
 	stroke-width: 2;
 }
+
 line.selected {
 	stroke: blue;
 	stroke-width: 2.5px;
@@ -165,23 +135,28 @@ line.selected {
 	fill: darkblue;
 	stroke: white;
 }
+
 .computerNode.previewed.selected {
 	fill: rgb(157, 157, 255);
 	stroke: darkblue;
 	/* stroke-width: 2; */
 }
+
 line.previewed.selected {
 	stroke: darkblue;
 	/* stroke-width: 2.5px; */
 }
+
 /* TIME */
 
 .future {
 	opacity: 0.2;
 }
+
 .past {
 	opacity: 0.6;
 }
+
 .present {
 	opacity: 1;
 }
