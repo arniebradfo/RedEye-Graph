@@ -131,13 +131,13 @@ export class GraphHandler {
 
 	private zoom!: ZoomBehavior<SVGSVGElement, unknown>;
 	private initializeZoom() {
-		const drawDotGrid = dotGrid(this.svg.node() || undefined);
+		// const drawDotGrid = dotGrid(this.svg.node() || undefined);
 
 		const zoomed = () => {
 			this.graphRoot.freeze(); // for draw performance...
 			this.graphRoot.callChildrenRecursively('drawLayout');
-
-			drawDotGrid(this.zoomTransform); // may decrease draw performance
+			
+			// drawDotGrid(this.zoomTransform); // may decrease draw performance
 		};
 
 		const zoomStart = () => {
@@ -159,7 +159,7 @@ export class GraphHandler {
 			.on('end', zoomEnd);
 
 		this.svg.call(this.zoom);
-		drawDotGrid(this.zoomTransform);
+		// drawDotGrid(this.zoomTransform);
 	}
 
 	get zoomTransform(): GraphZoomTransform {

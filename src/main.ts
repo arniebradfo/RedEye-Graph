@@ -1,5 +1,5 @@
 import './styles/global.css';
-import './styles/dot-grid.css' // degrades performance // TODO: rewrite as ts template string
+// import './styles/dot-grid.css' // degrades performance // TODO: rewrite as ts template string
 // import './styles/debug-style.css';
 
 import './styles/blueprint-tokens.css';
