@@ -53,6 +53,9 @@
 	--SelectedFocusBgColor: var(--primary5);
 	--GroupNodeStrokeColor: hsla(var(--black-hsl), 0.03);
 	--TextOutlineColor: hsla(var(--white-hsl), 0.8);
+
+	--SelectedThickness: 3px;
+	--PreviewThickness: 2px;
 }
 
 .bp5-dark {
