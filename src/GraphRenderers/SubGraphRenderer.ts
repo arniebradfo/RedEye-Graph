@@ -149,4 +149,4 @@ export class SubGraphRenderer extends HierarchicalGraphRenderer {
 	// static radius = (d: HierarchyReturnNode): number => 2 + (d.descendants ? d.descendants().length : 0);
 }
 
-const createLabel = (d: HierarchicalGraphNode) => `– ${d.data.name || '(missing)'}`;
+const createLabel = (d: HierarchicalGraphNode) => `– ${d.data.name || d.data.id}`;

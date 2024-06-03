@@ -206,4 +206,4 @@ export class SuperGraphRenderer extends HierarchicalGraphRenderer {
 	};
 }
 
-const createLabel = (d: HierarchicalGraphNode) => `${d.data.name || '(missing)'} –`;
+const createLabel = (d: HierarchicalGraphNode) => `${d.data.name || d.data.id} –`;
