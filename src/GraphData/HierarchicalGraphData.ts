@@ -47,7 +47,7 @@ export class HierarchicalGraphData {
 		});
 	}
 
-	/** TODO: returns the current SerializableHierarchicalGraphData including simulation x,y data */
+	/** returns the current SerializableHierarchicalGraphData including simulation x,y data */
 	get parsedGraphData(): SerializableHierarchicalGraphData {
 		return {
 			nodes: Array.from(this.allNodes.values()).map((node) => ({
