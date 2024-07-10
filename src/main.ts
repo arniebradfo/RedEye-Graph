@@ -21,13 +21,15 @@ declare global {
 }
 
 const getGraphData = async () => {
+	return getServers(50, 5);
+
 	try {
 		return (await json('./private-test-data/reviewed-annotated-all.json')) as GraphData;
 	} catch {
 		try {
 			return (await json('./public-test-data/miserables.json')) as GraphData;
 		} catch {
-			return getServers(75, 5);
+			return getServers(50, 5);
 		}
 	}
 };

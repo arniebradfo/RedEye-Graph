@@ -1,4 +1,7 @@
 import { range } from 'd3';
+import Jabber from 'jabber';
+
+const jabber = new Jabber();
 
 function uuidv4() {
 	// @ts-ignore
@@ -12,15 +15,16 @@ function randomIntFromInterval(min: number, max: number) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export const getServers = (n: number, numServers = 1) => {
+export const getServers = (numNodes: number, numServers = 1) => {
 	return range(numServers)
-		.map(() => randomGraph(n))
+		.map(() => randomGraph(numNodes))
 		.reduce(
 			(acc: any, curr: any) => {
 				const nodeToConnect = acc.nodes[randomIntFromInterval(acc.nodes.length / 2, acc.nodes.length - 1)];
 				const nodeToConnect2 = curr.nodes[randomIntFromInterval(curr.nodes.length / 2, curr.nodes.length - 1)];
 				acc.nodes.push(...curr.nodes);
 				acc.links.push(...curr.links);
+				acc.parents.push(...curr.parents);
 				if (nodeToConnect && Math.random() > 0.5) {
 					acc.links.push({
 						source: nodeToConnect.id,
@@ -30,21 +34,29 @@ export const getServers = (n: number, numServers = 1) => {
 				}
 				return acc;
 			},
-			{ nodes: [], links: [] }
+			{ nodes: [], links: [], parents: [] }
 		);
 };
 
-export const randomGraph = (n: number) => {
-	let group = uuidv4();
-	const nodes = range(n).map((i: number) => {
+export const randomGraph = (numNodes: number) => {
+	let parent = {
+		id: uuidv4(),
+		name: randomCorp(),
+	};
+	const parents = [parent];
+	const nodes = range(numNodes).map((i: number) => {
 		if (Math.random() > 0.75) {
-			group = uuidv4();
+			parent = {
+				id: uuidv4(),
+				name: randomCorp(),
+			};
+			parents.push(parent);
 		}
 		return {
 			isServer: i === 0,
-			name: i === 0 ? null : uuidv4(),
+			name: randomEmail(parent.name), // i === 0 ? null : uuidv4(),
 			id: uuidv4(),
-			parent: group,
+			parent: parent.id,
 		};
 	});
 	// const list = chunkArray(nodes);
@@ -52,7 +64,7 @@ export const randomGraph = (n: number) => {
 	const links = [...list].map(([a, b]: any) => {
 		return { source: a.id, target: b.id, id: `${a.id}-${b.id}` };
 	});
-	return { nodes, links };
+	return { nodes, links, parents };
 };
 
 function unorderedPairs(s: any[], a: any[] = []) {
@@ -80,4 +92,13 @@ function unorderedPairs(s: any[], a: any[] = []) {
 		}
 	}
 	return a;
+}
+
+const corp = ' Corp.';
+function randomCorp() {
+	return jabber.createFullName(false).split(' ')[0] + corp;
+}
+function randomEmail(randCorp: string) {
+	const domain = randCorp.replace(corp, '') + 'Corp.com';
+	return jabber.createEmail(domain);
 }
