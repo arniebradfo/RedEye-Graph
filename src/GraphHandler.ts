@@ -21,7 +21,7 @@ import type { HierarchicalGraphRenderer } from './GraphRenderers/HierarchicalGra
 import { textOcclusion, textOcclusionSort } from './GraphRenderers/textOcclusion';
 import { initializeTesting, noOp } from './utils';
 import type { NodeShape } from './GraphRenderers/polygon-utils';
-import { dotGrid, dotGridClassName } from './GraphRenderers/dot-grid';
+import { dotGridClassName } from './GraphRenderers/dot-grid';
 
 /** The root graph handler for all subgraphs and interactions */
 export class GraphHandler {
@@ -132,12 +132,12 @@ export class GraphHandler {
 
 	private zoom!: ZoomBehavior<SVGSVGElement, unknown>;
 	private initializeZoom() {
-		const drawDotGrid = dotGrid();
+		// const drawDotGrid = dotGrid();
 
 		const zoomed = () => {
 			this.graphRoot.freeze(); // for draw performance...
 			this.graphRoot.callChildrenRecursively('drawLayout');
-			drawDotGrid(this.zoomTransform); // may decrease draw performance
+			// drawDotGrid(this.zoomTransform); // may decrease draw performance
 		};
 
 		const zoomStart = () => {
@@ -159,7 +159,7 @@ export class GraphHandler {
 			.on('end', zoomEnd);
 
 		this.svg.call(this.zoom);
-		drawDotGrid(this.zoomTransform);
+		// drawDotGrid(this.zoomTransform);
 	}
 
 	get zoomTransform(): GraphZoomTransform {
