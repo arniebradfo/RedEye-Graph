@@ -72,16 +72,16 @@ const testGraph = async (svgElementId: string) => {
 			element.classList.toggle('showMoreLabels');
 			toggleButton(e.target as HTMLButtonElement);
 		},
-		randomData: (e: PointerEvent) => {
+		randomData: () => {
 			window.graph.graphData.updateGraphData(getServers(50, 5), { mergeWithCurrentGraphData: false });
 			window.graph.zoomToFit();
 		},
-		realData: (e: PointerEvent) => {
+		realData: () => {
 			if (!graphData.realData) return;
 			window.graph.graphData.updateGraphData(graphData.realData, { mergeWithCurrentGraphData: false });
 			window.graph.zoomToFit();
 		},
-		testData: (e: PointerEvent) => {
+		testData: () => {
 			if (!graphData.testData) return;
 			window.graph.graphData.updateGraphData(graphData.testData, { mergeWithCurrentGraphData: false });
 			window.graph.zoomToFit();
