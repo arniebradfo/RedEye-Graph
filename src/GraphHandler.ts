@@ -348,6 +348,9 @@ export class GraphHandler {
 			this.forceMode = 'graph';
 		}
 	}
+	toggleForceMode() {
+		this.useForceMode(this.forceMode === 'simple' ? 'graph' : 'simple');
+	}
 
 	static scaleRadius = (zk: number) => Math.min(zk, (zk - 1) * 0.3 + 1);
 }
