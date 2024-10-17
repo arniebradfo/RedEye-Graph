@@ -9,4 +9,34 @@ body,
 	font-size: 12px;
 	font-weight: bold;
 	overflow: hidden;
+	background-color: hsla(var(--dark-gray1-hsl), 1);
+
+}
+
+.control-bar {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	gap: 8px;
+	margin: 8px;
+	padding: 4px 8px 4px 12px;
+	align-items: center;
+	/* background-color: hsla(var(--dark-gray1-hsl), 0.7); */
+	backdrop-filter: blur(10px);
+	border-radius: 5px;
+	/* overflow: hidden; */
+	flex-wrap: wrap;
+}
+
+.control-bar-text{
+	display: flex;
+	gap: 8px;
+	align-items: baseline;
+	flex: 1 0 auto;
+}
+
+.bp5-button-group {
+	background-color: var(--dark-gray2);
+	box-shadow: var(--pt-elevation-shadow-2);
+	overflow: hidden;
 }

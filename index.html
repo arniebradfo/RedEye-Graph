@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" class="bp5-dark">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/redeye.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link type="text/css" rel="stylesheet" href="./src/style.css" />
-		<title>RedEye Graph</title>
-	</head>
+<html lang="en" class="bp5-dark bp5-focus-disabled">
 
-	<body>
-		<svg id="app" style="width: 100vw; height: 100vh"></svg>
-    <script type="module" src="/src/main.ts"></script>
-	</body>
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/redeye.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link type="text/css" rel="stylesheet" href="./src/style.css" />
+	<title>RedEye Graph</title>
+</head>
+
+<body>
+	<svg id="app" style="width: 100vw; height: 100vh"></svg>
+	<script type="module" src="/src/main.ts"></script>
+	<div class="control-bar">
+		<div class="control-bar-text">
+			<h1 class="bp5-heading" style="font-size: 1.5rem; margin: 0;">RedEye Graph Demo</h1>
+			/
+			<a href="https://github.com/arniebradfo/redeye-graph">GitHub</a>
+			/
+			<a href="https://bradford.digital/pages/RedEye">Article</a>
+		</div>
+
+		<div class="bp5-button-group">
+			<button title="" type="button" class="bp5-button bp5-minimal"
+				onclick="window.controls.toggleForceMode(event)">Anchor Nodes</button>
+		</div>
+		<div class="bp5-button-group">
+			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.showMoreLabels(event)">Show
+				Labels</button>
+		</div>
+		<div class="bp5-button-group">
+			<button type="button" class="bp5-button bp5-minimal"
+				onclick="window.controls.randomData(event)">RandomData</button>
+			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.realData(event)">RealData</button>
+			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.testData(event)">TestData</button>
+		</div>
+		<div class="bp5-button-group">
+			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.zoomIn(event)">+</button>
+			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.zoomOut(event)">-</button>
+			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.zoomToFit(event)">x</button>
+		</div>
+	</div>
+</body>
+
 </html>

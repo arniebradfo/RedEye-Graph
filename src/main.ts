@@ -17,26 +17,29 @@ import { GraphData, SerializableHierarchicalGraphData } from './GraphData/types'
 declare global {
 	interface Window {
 		graph: RedEyeGraph;
+		controls: any;
 	}
 }
 
 const getGraphData = async () => {
-	return getServers(50, 5);
+	const data: { randomData: GraphData; realData?: GraphData; testData?: GraphData } = {
+		randomData: getServers(50, 5),
+	};
 
 	try {
-		return (await json('./private-test-data/reviewed-annotated-all.json')) as GraphData;
-	} catch {
-		try {
-			return (await json('./public-test-data/miserables.json')) as GraphData;
-		} catch {
-			return getServers(50, 5);
-		}
-	}
+		data.realData = (await json('./public-test-data/reviewed-annotated-all.json')) as GraphData;
+	} catch {}
+
+	try {
+		data.testData = (await json('./public-test-data/miserables.json')) as GraphData;
+	} catch {}
+
+	return data;
 };
 
 const getPreviouslyParsedGraphData = async () => {
 	try {
-		return (await json('./private-test-data/parsedGraphData.json')) as SerializableHierarchicalGraphData;
+		return (await json('./public-test-data/parsedGraphData.json')) as SerializableHierarchicalGraphData;
 	} catch {
 		return undefined;
 	}
@@ -49,13 +52,50 @@ const testGraph = async (svgElementId: string) => {
 	const element = document.getElementById(svgElementId) as unknown as SVGSVGElement;
 
 	window.graph = new RedEyeGraph({
-		graphData,
+		graphData: graphData.realData || graphData.randomData,
 		element,
 		previouslyParsedGraphData,
 		onSelectionChange: (selectedNode) => console.log(selectedNode),
 	});
 	window.addEventListener('resize', () => window.graph.resize());
+
+	const controls = {
+		zoomIn: () => window.graph.zoomIn(),
+		zoomOut: () => window.graph.zoomOut(),
+		zoomToFit: () => window.graph.zoomToFit(),
+		zoomToSelection: () => window.graph.zoomToSelection(),
+		toggleForceMode: (e: PointerEvent) => {
+			window.graph.toggleForceMode();
+			toggleButton(e.target as HTMLButtonElement);
+		},
+		showMoreLabels: (e: PointerEvent) => {
+			element.classList.toggle('showMoreLabels');
+			toggleButton(e.target as HTMLButtonElement);
+		},
+		randomData: (e: PointerEvent) => {
+			window.graph.graphData.updateGraphData(getServers(50, 5), { mergeWithCurrentGraphData: false });
+			window.graph.zoomToFit();
+		},
+		realData: (e: PointerEvent) => {
+			if (!graphData.realData) return;
+			window.graph.graphData.updateGraphData(graphData.realData, { mergeWithCurrentGraphData: false });
+			window.graph.zoomToFit();
+		},
+		testData: (e: PointerEvent) => {
+			if (!graphData.testData) return;
+			window.graph.graphData.updateGraphData(graphData.testData, { mergeWithCurrentGraphData: false });
+			window.graph.zoomToFit();
+		},
+	};
+	window.controls = controls;
+
 	console.log(window.graph);
+};
+
+const toggleButton = (buttonElement: HTMLButtonElement) => {
+	['bp5-intent-primary', 'bp5-active'].forEach((className) => {
+		buttonElement.classList.toggle(className);
+	});
 };
 
 testGraph('app'); // RUN IT!
