@@ -1,5 +1,7 @@
 # RedEye Hierarchical Graph
 
+(a fork of [RedEye](https://github.com/cisagov/RedEye)'s [Graph Component](https://github.com/cisagov/RedEye/tree/develop/packages/graph))
+
 The RedEye Graph has three main functional parts:
 
 - The `HierarchicalGraphData` store - responsible for parsing the hierarchical graph data, storing state, and issuing state change events
