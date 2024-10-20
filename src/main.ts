@@ -92,10 +92,15 @@ const testGraph = async (svgElementId: string) => {
 	console.log(window.graph);
 };
 
-const toggleButton = (buttonElement: HTMLButtonElement) => {
-	['bp5-intent-primary', 'bp5-active'].forEach((className) => {
-		buttonElement.classList.toggle(className);
-	});
+const toggleButton = (element: HTMLElement) => {
+	const buttonElement = element.closest('button');
+	if (buttonElement) {
+		['bp5-intent-primary', 'bp5-active', 'bp5-minimal'].forEach((className) => {
+			buttonElement.classList.toggle(className);
+		});
+	} else {
+		console.warn('No Button Element');
+	}
 };
 
 testGraph('app'); // RUN IT!

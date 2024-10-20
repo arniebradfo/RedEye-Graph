@@ -40,3 +40,8 @@ body,
 	box-shadow: var(--pt-elevation-shadow-2);
 	overflow: hidden;
 }
+
+.bp5-icon{
+	height: 16px;
+	width: 16px;
+}

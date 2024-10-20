@@ -10,6 +10,39 @@
 </head>
 
 <body>
+	<svg style="display: none;">
+		<defs>
+			<symbol id="ibm-string-text" width="16" height="16" viewBox="0 0 32 32">
+				<title>string-text</title>
+				<path d="M29,22H24a2.0027,2.0027,0,0,1-2-2V14a2.0023,2.0023,0,0,1,2-2h5v2H24v6h5Z" />
+				<path d="M18,12H14V8H12V22h6a2.0027,2.0027,0,0,0,2-2V14A2.0023,2.0023,0,0,0,18,12Zm-4,8V14h4v6Z" />
+				<path d="M8,12H3v2H8v2H4a2,2,0,0,0-2,2v2a2,2,0,0,0,2,2h6V14A2.0023,2.0023,0,0,0,8,12Zm0,8H4V18H8Z" />
+			</symbol>
+			<symbol id="ibm-add" width="16" height="16" viewBox="0 0 32 32">
+				<title>add</title>
+				<polygon points="17,15 17,8 15,8 15,15 8,15 8,17 15,17 15,24 17,24 17,17 24,17 24,15 " />
+			</symbol>
+			<symbol id="ibm-subtract" width="16" height="16" viewBox="0 0 32 32">
+				<title>subtract</title>
+				<rect x="8" y="15" width="16" height="2" />
+			</symbol>
+			<symbol id="ibm-center-to-fit" width="16" height="16" viewBox="0 0 32 32">
+				<title>center-to-fit</title>
+				<polygon points="8 2 2 2 2 8 4 8 4 4 8 4 8 2" />
+				<polygon points="24 2 30 2 30 8 28 8 28 4 24 4 24 2" />
+				<polygon points="8 30 2 30 2 24 4 24 4 28 8 28 8 30" />
+				<polygon points="24 30 30 30 30 24 28 24 28 28 24 28 24 30" />
+				<path
+					d="M24,24H8a2.0023,2.0023,0,0,1-2-2V10A2.0023,2.0023,0,0,1,8,8H24a2.0023,2.0023,0,0,1,2,2V22A2.0023,2.0023,0,0,1,24,24ZM8,10V22H24V10Z" />
+			</symbol>
+			<symbol id="ibm-harbor" width="16" height="16" viewBox="0 0 32 32">
+				<title>harbor</title>
+				<path
+					d="M27,17A11.0109,11.0109,0,0,1,17,27.9492V14h6V12H17V9.8579a4,4,0,1,0-2,0V12H9v2h6V27.9492A11.0109,11.0109,0,0,1,5,17H3a13,13,0,0,0,26,0ZM14,6a2,2,0,1,1,2,2A2.0023,2.0023,0,0,1,14,6Z" />
+			</symbol>
+		</defs>
+	</svg>
+
 	<svg id="app" style="width: 100vw; height: 100vh"></svg>
 	<script type="module" src="/src/main.ts"></script>
 	<div class="control-bar">
@@ -22,23 +55,39 @@
 		</div>
 
 		<div class="bp5-button-group">
-			<button title="" type="button" class="bp5-button bp5-minimal"
-				onclick="window.controls.toggleForceMode(event)">Anchor Nodes</button>
+			<button title="Anchor nodes on var(--danger5-hsl)" type="button" class="bp5-button"
+				onclick="window.controls.toggleForceMode(event)">
+				<span class="bp5-icon"><svg width="16" height="16">
+						<use xlink:href="#ibm-harbor" />
+					</svg></span></button>
 		</div>
 		<div class="bp5-button-group">
-			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.showMoreLabels(event)">Show
-				Labels</button>
+			<button title="Show more text" type="button" class="bp5-button" onclick="window.controls.showMoreLabels(event)">
+				<span class="bp5-icon"><svg width="16" height="16">
+						<use xlink:href="#ibm-string-text" />
+					</svg></span>
+			</button>
 		</div>
 		<div class="bp5-button-group">
-			<button type="button" class="bp5-button bp5-minimal"
-				onclick="window.controls.randomData(event)">RandomData</button>
-			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.realData(event)">RealData</button>
-			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.testData(event)">TestData</button>
+			<button title="Generate random node graph" type="button" class="bp5-button"
+				onclick="window.controls.randomData(event)">Random</button>
+			<button title="Use realistic data" type="button" class="bp5-button"
+				onclick="window.controls.realData(event)">Realistic</button>
+			<!-- <button title="Use Les Miserables graph data" type="button" class="bp5-button" onclick="window.controls.testData(event)">Test</button> -->
 		</div>
 		<div class="bp5-button-group">
-			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.zoomIn(event)">+</button>
-			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.zoomOut(event)">-</button>
-			<button type="button" class="bp5-button bp5-minimal" onclick="window.controls.zoomToFit(event)">x</button>
+			<button title="Zoom in" type="button" class="bp5-button" onclick="window.controls.zoomIn(event)"> <span
+					class="bp5-icon"><svg width="16" height="16">
+						<use xlink:href="#ibm-add" />
+					</svg></span></button>
+			<button title="Zoom out" type="button" class="bp5-button" onclick="window.controls.zoomOut(event)"><span
+					class="bp5-icon"><svg width="16" height="16">
+						<use xlink:href="#ibm-subtract" />
+					</svg></span></button></button>
+			<button title="Zoom to fit" type="button" class="bp5-button" onclick="window.controls.zoomToFit(event)"><span
+					class="bp5-icon"><svg width="16" height="16">
+						<use xlink:href="#ibm-center-to-fit" />
+					</svg></span></button></button>
 		</div>
 	</div>
 </body>
